@@ -1,54 +1,92 @@
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
-
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(45deg, #0F2027, #203A43, #2C5364);
-    animation: gradient 10s ease infinite;
-    background-size: 400% 400%;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+  animation: gradient 10s ease infinite;
+  background-size: 400% 400%;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
-header, footer, section {
-    padding: 64px 0;
+header,
+footer,
+section {
+  padding: 64px 0;
 }
 
 header {
-    background-image: url(/img/bg-header.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 100%;
-    background-size: cover;
+  background-image: url(/img/bg-header.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
+}
+
+.container-nav {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.logo {
+  font-size: 32px;
+  letter-spacing: 3px;
+  line-height: 20px;
 }
 
 .container-title {
-    margin-top: 90px;
+  margin-top: 90px;
+}
+
+.line-text {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .line-horizontal {
-    width: 72px;
-    height: 2px;
-    background-color: #FBD784;
+  width: 72px;
+  height: 2px;
+  background-color: #fbd784;
+  margin-right: 15px;
 }
 
+.text {
+  color: #fbd784;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin: 0 32px;
+}
+
+.text-main {
+  font-family: "Gentium Basic", serif;
+  font-weight: 400;
+  font-size: 88px;
+}
+
+.scroll {
+  display: inline-flex;
+  margin: 5px;
+}
 
 .line-vertical {
-    width: 3px; 
-    height: 240px;
-    background-color: #fff;
-    
-   
+  width: 3px;
+  height: 240px;
+  background-color: #fff;
+  padding: 0;
+  margin-left: 45px;
 }
