@@ -5,7 +5,9 @@ body {
 
 body {
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #020201, #8f7498, #b3467b);
   animation: gradient 10s ease infinite;
   background-size: 400% 400%;
 }
@@ -47,14 +49,29 @@ header {
   line-height: 20px;
 }
 
+.row-nav {
+  text-shadow: -2px 1px 6px #493153;
+  margin: 0 auto;
+}
+
 .container-title {
-  margin-top: 90px;
+  margin-top: 198px;
+}
+
+.row-title {
+  text-shadow: -2px 1px 6px #493153;
+  margin: 200px auto;
+}
+
+.col-title {
+  margin: 0 auto;
 }
 
 .line-text {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  /* margin-left: 72px; */
 }
 
 .line-horizontal {
@@ -81,12 +98,60 @@ header {
 .scroll {
   display: inline-flex;
   margin: 5px;
+  /* margin-left: 72px; */
 }
 
+/* Section01 */
 .line-vertical {
   width: 3px;
   height: 240px;
   background-color: #fff;
   padding: 0;
-  margin-left: 45px;
+}
+
+.img01 {
+  background-image: url(/img/01.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 720px;
+  width: 420px;
+  background-size: cover;
+}
+
+/* .row01 .row02 .row03 { 
+  text-shadow: -2px 1px 6px #493153; 
+  
+} */
+
+.lvl-hiking-text {
+  font-family: Gentium Basic, serif;
+  font-weight: 400;
+  font-size: 64px;
+}
+
+.text-arrow-gold {
+  color: #fbd784;
+  display: inline-flex;
+  margin: 5px;
+}
+
+.img02 {
+  background-image: url(/img/02.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 720px;
+  background-size: cover;
+  width: 420px;
+}
+
+.img03 {
+  background-image: url(/img/03.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 720px;
+  background-size: cover;
+  width: 420px;
+}
+.more-main {
+  display: inline-flex;
 }
