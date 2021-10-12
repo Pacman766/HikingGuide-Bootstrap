@@ -3,7 +3,21 @@ body {
   height: 100%;
 }
 
-body {
+* a {
+  text-decoration: none;
+  color: #fff;
+}
+
+* a:hover {
+  color: #fbd784;
+  box-shadow: #020201;
+  transition-duration: 0.5s;
+  /* transition: 0.5 ease; */
+}
+
+body,
+section,
+footer {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -27,7 +41,7 @@ body {
 header,
 footer,
 section {
-  padding: 64px 0;
+  padding: 50px 0;
 }
 
 header {
@@ -44,7 +58,7 @@ header {
 }
 
 .logo {
-  font-size: 32px;
+  font-size: 45px;
   letter-spacing: 3px;
   line-height: 20px;
 }
@@ -71,7 +85,6 @@ header {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  /* margin-left: 72px; */
 }
 
 .line-horizontal {
@@ -98,7 +111,6 @@ header {
 .scroll {
   display: inline-flex;
   margin: 5px;
-  /* margin-left: 72px; */
 }
 
 /* Section01 */
@@ -114,14 +126,9 @@ header {
   background-position: center center;
   background-repeat: no-repeat;
   height: 720px;
-  width: 420px;
+
   background-size: cover;
 }
-
-/* .row01 .row02 .row03 { 
-  text-shadow: -2px 1px 6px #493153; 
-  
-} */
 
 .lvl-hiking-text {
   font-family: Gentium Basic, serif;
@@ -141,7 +148,6 @@ header {
   background-repeat: no-repeat;
   height: 720px;
   background-size: cover;
-  width: 420px;
 }
 
 .img03 {
@@ -150,8 +156,39 @@ header {
   background-repeat: no-repeat;
   height: 720px;
   background-size: cover;
-  width: 420px;
 }
+
+.logo-second {
+  font-size: 32px;
+  letter-spacing: 3px;
+  /* text-decoration: none;
+  color: #fff; */
+}
+
+.copyright {
+  margin-top: 135px;
+  font-family: "Raleway", sans-serif;
+  color: #3f1456;
+}
+
 .more-main {
   display: inline-flex;
+  justify-content: space-between;
+}
+
+.more-main a {
+  font-family: "Raleway", sans-serif;
+
+  text-decoration: none;
+  color: #3f1456;
+}
+
+.more01 h6 {
+  color: #fbd784;
+  font-size: 24px;
+}
+
+.more02 h6 {
+  color: #fbd784;
+  font-size: 24px;
 }
