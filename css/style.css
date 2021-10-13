@@ -67,6 +67,20 @@ header {
   text-shadow: -2px 1px 6px #493153;
   margin: 0 auto;
 }
+.social {
+  display: inline-block;
+}
+.follow {
+  transform: rotate(90deg);
+}
+
+.instagram-img:hover {
+  fill: #fbd784;
+}
+
+.twitter-img:hover {
+  fill: #fbd784;
+}
 
 .container-title {
   margin-top: 198px;
@@ -113,7 +127,66 @@ header {
   margin: 5px;
 }
 
+.arrow-down path:hover {
+  fill: #fbd784;
+}
+
 /* Section01 */
+.row01 {
+  position: relative;
+}
+
+.all-text02 {
+  position: relative;
+}
+.bg-number01 {
+  position: absolute;
+  font-size: 240px;
+  color: rgba(233, 235, 228, 0.267);
+  top: 50px;
+  left: -50px;
+}
+
+.bg-number02 {
+  position: absolute;
+  font-size: 240px;
+  color: rgba(233, 235, 228, 0.267);
+  top: -163px;
+  left: -3px;
+}
+
+.bg-number03 {
+  position: absolute;
+  font-size: 240px;
+  color: rgba(233, 235, 228, 0.267);
+  top: 25px;
+  left: -50px;
+}
+
+.text-arrow-gold:hover {
+  color: #fff;
+}
+
+.arrow-right:hover {
+  fill: #fff;
+}
+
+.row03 {
+  position: relative;
+}
+
+.line-text {
+  position: relative;
+}
+
+.line-horizontal {
+  position: relative;
+}
+
+.lvl-hiking-text {
+  position: relative;
+}
+
 .line-vertical {
   width: 3px;
   height: 240px;
@@ -161,8 +234,6 @@ header {
 .logo-second {
   font-size: 32px;
   letter-spacing: 3px;
-  /* text-decoration: none;
-  color: #fff; */
 }
 
 .copyright {
@@ -181,6 +252,10 @@ header {
 
   text-decoration: none;
   color: #3f1456;
+}
+
+.more-main a:hover {
+  color: #fff;
 }
 
 .more01 h6 {
