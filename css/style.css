@@ -8,11 +8,10 @@ body {
   color: #fff;
 }
 
-* a:hover {
+* a:hover, .arrow-down path:hover {
   color: #fbd784;
-  box-shadow: #020201;
-  transition-duration: 0.5s;
-  /* transition: 0.5 ease; */
+  transition: all 0.5s ease 0s;
+  fill: #fbd784;
 }
 
 body,
@@ -67,11 +66,13 @@ header {
   text-shadow: -2px 1px 6px #493153;
   margin: 0 auto;
 }
-.social {
-  display: inline-block;
-}
+
 .follow {
+  display: inline-block;
   transform: rotate(90deg);
+  position: relative;
+  top: -40px;
+  left: -25px;
 }
 
 .instagram-img:hover {
@@ -125,10 +126,6 @@ header {
 .scroll {
   display: inline-flex;
   margin: 5px;
-}
-
-.arrow-down path:hover {
-  fill: #fbd784;
 }
 
 /* Section01 */
