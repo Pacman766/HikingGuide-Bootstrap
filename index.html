@@ -105,35 +105,31 @@
       </div>
     </header>
     <section class="section01">
-      <div class="container container01">
+      <div class="container container01" id="container01">
         <div class="row row01 align-items-center">
           <div class="col-7 all-text">
             <div class="bg-number01">01</div>
             <div class="line-text">
               <div class="line-horizontal"></div>
-              <p class="text">Get Started</p>
+              <p class="text"">Get Started</p>
             </div>
             <h2 class="lvl-hiking-text">What level of hiker are you?</h2>
             <p>
               Determining what level of hiker you are can be an important tool
               when planning future hikes. This hiking level guide will help you
               plan hikes according to different hike ratings set by various
-              websites like<span id="dots">...</span> 
+              websites like<span id="dots">...</span>
               <span id="read_more"
                 >All Trails and Modern Hiker. What type of hiker are you –
                 novice, moderate, advanced moderate, expert, or expert
                 backpacker?</span
               >
             </p>
-            <a id="read_more_btn" class="link-arrow" href="#">
-              <p class="text-arrow-gold">read more</p>
-              <svg
-                width="24"
-                height="16"
-                viewBox="0 0 24 16"
-                fill="none"
-              >
-                <path id="read_more_arrow"
+            <a class="link-arrow" href="#container01" onclick="readMore()">
+              <p class="text-arrow-gold" id="read_more_btn">read more</p>
+              <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
+                <path
+                  id="read_more_arrow"
                   class="arrow-right"
                   d="M16 -6.99382e-07L14.59 1.41L20.17 7L-3.93402e-07 7L-3.0598e-07 9L20.17 9L14.58 14.58L16 16L24 8L16 -6.99382e-07Z"
                   fill="#FBD784"
@@ -148,7 +144,7 @@
       </div>
     </section>
     <section class="section02">
-      <div class="container container02">
+      <div class="container container02" id="container02">
         <div class="row row02 align-items-center">
           <div class="col-6">
             <div class="img02"></div>
@@ -157,26 +153,28 @@
             <div class="bg-number02">02</div>
             <div class="line-text">
               <div class="line-horizontal"></div>
-              <p class="text">Hiking Essentials</p>
+              <p class="text" id="hiking_essensials">Hiking Essentials</p>
             </div>
             <h2 class="lvl-hiking-text">Picking the right Hiking Gear!</h2>
             <p>
               The nice thing about beginning hiking is that you don’t really
               need any special gear, you can probably get away with things you
-              already have. Let’s start with clothing. A typical mistake hiking
-              beginners make is wearing jeans and regular clothes, which will
-              get heavy and chafe wif they get sweaty or wet.
+              already have. Let’s start with clothing. A typical<span id="dots01"
+                >...</span
+              ><span id="read_more01"
+                >mistake hiking beginners make is wearing jeans and regular
+                clothes, which will get heavy and chafe wif they get sweaty or
+                wet.</span
+              >
             </p>
 
-            <a class="link-arrow" href="#">
-              <p class="text-arrow-gold">read more</p>
-              <svg
-                width="24"
-                height="16"
-                viewBox="0 0 24 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+            <a
+              class="link-arrow"
+              href="#container02"
+              onclick="readMore()"
+            >
+              <p class="text-arrow-gold" id="read_more_btn01">read more</p>
+              <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
                 <path
                   class="arrow-right"
                   d="M16 -6.99382e-07L14.59 1.41L20.17 7L-3.93402e-07 7L-3.0598e-07 9L20.17 9L14.58 14.58L16 16L24 8L16 -6.99382e-07Z"
@@ -276,6 +274,18 @@
         </div>
       </div>
     </footer>
+    <div class="scroll-up">
+      <svg class="scroll-up__svg" viewBox="-2 -2 52 52">
+        <path
+          class="scroll-up__svg-path"
+          d="
+              M24,0
+              a24,24 0 0,1 0, 48
+              a24,24 0 0,1 0, -48
+          "
+        />
+      </svg>
+    </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
   </body>
