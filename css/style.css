@@ -136,6 +136,9 @@ header {
 .all-text02 {
   position: relative;
 }
+
+#read_more {display: none;}
+
 .bg-number01 {
   position: absolute;
   font-size: 240px;
