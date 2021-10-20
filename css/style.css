@@ -302,7 +302,7 @@ header {
 }
 
 .scroll-up:hover {
-  color: #fbd784;
+  color: #ffc02e;
 }
 
 .scroll-up--active {
@@ -314,7 +314,7 @@ header {
 .scroll-up__svg-path {
   box-sizing: border-box;
   fill: none;
-  stroke: #fbd784;
+  stroke: #ffc02e;
   stroke-width: 4px;
   transition: 0.2s;
 }
