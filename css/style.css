@@ -344,3 +344,10 @@ header {
 .page-link {
   pointer-events: none;
 } */
+
+.text-clothes {
+  color: #fbd784;
+text-transform: uppercase;
+font-size: 18px;
+letter-spacing: 3px;
+}

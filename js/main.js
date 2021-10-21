@@ -55,6 +55,7 @@ scrollUp.addEventListener("click", () => {
 
 // Слайдер
 let offsetSlider = 0; //смещение от левого края
+let offsetText = 0; // смещение текста
 const sliderLine = document.querySelector(".slider-line");
 
 document.querySelector(".slider-next").addEventListener("click", function () {
@@ -94,3 +95,6 @@ document.querySelector(".page-link-03").addEventListener("click", function () {
 
   sliderLine.style.left = -offsetSlider + "px";
 });
+
+
+
