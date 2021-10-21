@@ -53,12 +53,44 @@ scrollUp.addEventListener("click", () => {
   });
 });
 
-
 // Слайдер
 let offsetSlider = 0; //смещение от левого края
-const sliderLine = document.querySelector('.slider-line');
+const sliderLine = document.querySelector(".slider-line");
 
-document.querySelector('next-btn').addEventListener('click', function(){
-  offsetSlider += 340;
-  sliderLine.style.left = offsetSlider + 'px';
+document.querySelector(".slider-next").addEventListener("click", function () {
+  offsetSlider += 360;
+  if (offsetSlider > 1080) {
+    offsetSlider = 0;
+  }
+  sliderLine.style.left = -offsetSlider + "px";
+});
+
+document.querySelector(".slider-prev").addEventListener("click", function () {
+  offsetSlider -= 360;
+  if (offsetSlider < 0) {
+    offsetSlider = 1080;
+  }
+  sliderLine.style.left = -offsetSlider + "px";
+});
+
+document.querySelector(".page-link-01").addEventListener("click", function () {
+  if (offsetSlider == 360 || offsetSlider == 720 || offsetSlider == 1080) {
+    offsetSlider = 0;
+  }
+  sliderLine.style.left = -offsetSlider + "px";
+});
+
+document.querySelector(".page-link-02").addEventListener("click", function () {
+  if (offsetSlider == 0 || offsetSlider == 720 || offsetSlider == 1080) {
+    offsetSlider = 360;
+  }
+  sliderLine.style.left = -offsetSlider + "px";
+});
+
+document.querySelector(".page-link-03").addEventListener("click", function () {
+  if (offsetSlider == 0 || offsetSlider == 360 || offsetSlider == 1080) {
+    offsetSlider = 720;
+  }
+
+  sliderLine.style.left = -offsetSlider + "px";
 });

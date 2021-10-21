@@ -15,6 +15,11 @@ body {
   fill: #fbd784;
 }
 
+section,
+header {
+  min-height: 937px;
+}
+
 body,
 section,
 footer {
@@ -202,7 +207,6 @@ header {
   background-position: center center;
   background-repeat: no-repeat;
   height: 720px;
-
   background-size: cover;
 }
 
@@ -322,8 +326,8 @@ header {
 .slider {
   width: 360px;
   height: 640px;
-  border: 2px solid black;
   margin: 30px auto;
+  overflow: hidden;
 }
 
 .slider-line {
@@ -331,8 +335,11 @@ header {
   width: 1440px;
   display: flex;
   position: relative;
-
+  left: 0;
+  transition: all ease 1s;
+  font-size: 0;
 }
+
 /* 
 .page-link {
   pointer-events: none;
