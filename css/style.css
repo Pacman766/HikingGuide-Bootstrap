@@ -318,3 +318,22 @@ header {
   stroke-width: 4px;
   transition: 0.2s;
 }
+
+.slider {
+  width: 360px;
+  height: 640px;
+  border: 2px solid black;
+  margin: 30px auto;
+}
+
+.slider-line {
+  height: 640px;
+  width: 1440px;
+  display: flex;
+  position: relative;
+
+}
+/* 
+.page-link {
+  pointer-events: none;
+} */

@@ -1,3 +1,4 @@
+// Раскрывающийся текст
 function readMore() {
   let dots = document.getElementById("dots");
   let readMore = document.getElementById("read_more");
@@ -14,6 +15,7 @@ function readMore() {
   }
 }
 
+// Прокрутка вниз
 const offset = 100;
 const scrollUp = document.querySelector(".scroll-up");
 const scrollUpSvgPath = document.querySelector(".scroll-up__svg-path");
@@ -49,4 +51,14 @@ scrollUp.addEventListener("click", () => {
     top: 0,
     behavior: "smooth",
   });
+});
+
+
+// Слайдер
+let offsetSlider = 0; //смещение от левого края
+const sliderLine = document.querySelector('.slider-line');
+
+document.querySelector('next-btn').addEventListener('click', function(){
+  offsetSlider += 340;
+  sliderLine.style.left = offsetSlider + 'px';
 });
