@@ -96,5 +96,6 @@ document.querySelector(".page-link-03").addEventListener("click", function () {
   sliderLine.style.left = -offsetSlider + "px";
 });
 
+// Табы
 
 
