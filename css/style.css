@@ -369,21 +369,54 @@ header {
   position: absolute;
   background-color: rgba(59, 127, 131, 0.267);
   width: 600px;
-  font-size: 30px;
+  font-size: 25px;
   right: 110px;
   bottom: -100px;
-}
-
-.tabheader {
-  border-color: rgb(66, 160, 54);
 }
 
 .tabheader h3 {
   font-size: 40px;
 }
 
+.tabheader__items {
+  margin-top: 35px;
+  padding-left: 26px;
+  border-left: 1px solid #fbd784;
+}
+
 .tabheader__item {
-  font-size: 30px;
+  font-weight: 700;
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 10px;
+  color: #fff;
   cursor: pointer;
   transition: 0.3s all;
+}
+.tabheader__item_active {
+  color: #fbd784;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
 }
