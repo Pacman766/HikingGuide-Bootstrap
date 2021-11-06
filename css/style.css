@@ -73,6 +73,15 @@ header {
   margin: 0 auto;
 }
 
+.account__btn {
+  cursor: pointer;
+}
+
+.account__btn:hover{
+  color: #fbd784;
+  transition: all 0.5s ease 0s;
+}
+
 .follow {
   display: inline-block;
   transform: rotate(90deg);
@@ -339,11 +348,6 @@ header {
   transition: all ease 1s;
   font-size: 0;
 }
-
-/* 
-.page-link {
-  pointer-events: none;
-} */
 
 .text-clothes {
   color: #fbd784;
