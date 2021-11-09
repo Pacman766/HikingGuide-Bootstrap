@@ -17,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Прокрутка вниз
+
   const offset = 100;
   const scrollUp = document.querySelector('.scroll-up');
   const scrollUpSvgPath = document.querySelector('.scroll-up__svg-path');
@@ -36,6 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   // onScroll
+
   window.addEventListener('scroll', () => {
     updateDashoffset();
 
@@ -55,6 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // Слайдер
+
   let offsetSlider = 0; //смещение от левого края
   let offsetText = 0; // смещение текста
   const sliderLine = document.querySelector('.slider-line');
@@ -179,6 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // закрытие на кнопку esc
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Escape' && modalParent.classList.contains('show')) {
       closeModal();
@@ -187,6 +191,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // const modalTimerId = setTimeout(openModal, 3000);
 
+  // открытие модалки при скроле в конец экрана
   function showModalByScroll() {
     if (
       window.pageYOffset + document.documentElement.clientHeight >=
