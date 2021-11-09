@@ -231,6 +231,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Устанавливаем время с помощью делегирования, и интервал
+  // в 1000 миллисек
   function setClock(selector, endTime) {
     const timer = document.querySelector(selector),
       days = timer.querySelector('#days'),
@@ -239,8 +241,12 @@ window.addEventListener('DOMContentLoaded', () => {
       seconds = timer.querySelector('#seconds'),
       timerInterval = setInterval(updateClock, 1000);
 
-    updateClock();
+    updateClock(); // вызываем ф-цию для того, чтобы после обновления страницы выводилось сразу
+    // нужное время, а не то которое прописано в вёрстке
 
+    // Создаем переменную t в виде объекта оставшегося времени,
+    // помещяем соответствующее св-во объекта в HTML,
+    // Проверяем не закончилось ли время, если да, то очищаем интервал
     function updateClock() {
       const t = getTimeRemaining(endTime);
 
