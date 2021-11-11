@@ -26,7 +26,7 @@
         <div class="col-2 text-center"><a href="">About us</a></div>
         <div class="col-2 text-center"><a href="">Blog</a></div>
         <div class="col-3 text-end account">
-          <div class="account__btn">
+          <div data-modal class="account__btn">
             <i class="icon-login"></i>
             Account
           </div>
@@ -317,11 +317,35 @@
       </div>
     </section>
 
-    <!-- Таймер -->
+    <!-- Акция -->
 
     <section class="section section06">
       <div class="container container06">
         <div class="row row06 align-items-center">
+          <div class="title_promo">Book your trial day now!</div>
+            <form action="#" class="order__form">
+              <input
+                required
+                placeholder="Name"
+                name="name"
+                type="text"
+                class="order__input"
+              />
+              <input
+                required
+                placeholder="Phone number"
+                name="phone"
+                type="phone"
+                class="order__input"
+              />
+              <img src="/img/arrow-right.svg" alt="right" />
+              <button data-modal class="btn_promotion" >Call us back</button>
+            </form>
+
+            <div class="divider"></div>
+
+          <!-- Таймер -->
+
           <div class="promotion__text">
             <div class="title">Promotion for new customers!</div>
             <div class="promotion__descr">

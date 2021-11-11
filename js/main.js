@@ -151,8 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Modal
 
   const modalBtn = document.querySelector('.account__btn'), // кнопка откр. модалки
-    modalParent = document.querySelector('.modal'), // родитель модал окна
-    modalClose = document.querySelector('[data-close]'); // закрытие на крестик
+    modalParent = document.querySelector('.modal'); // родитель модал окна
 
   // ф-ция открытия модалки
   function openModal() {
@@ -162,7 +161,7 @@ window.addEventListener('DOMContentLoaded', () => {
     clearInterval(modalTimerId);
   }
 
-  // открытие на кнопка
+  // открытие на кнопку
   modalBtn.addEventListener('click', openModal);
 
   // ф-ция закрытия модалки
@@ -172,12 +171,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // обработчик закрытия на крестик
-  modalClose.addEventListener('click', closeModal);
-
-  // закрытие при нажатии на пустую область экрана
+  // закрытие при нажатии на пустую область экрана или на крестик
   modalParent.addEventListener('click', (e) => {
-    if (e.target === modalParent) {
+    if (e.target === modalParent || e.target.getAttribute('data-close') == '') {
       closeModal();
     }
   });
@@ -189,7 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // const modalTimerId = setTimeout(openModal, 3000);
+  const modalTimerId = setTimeout(openModal, 50000);
 
   // открытие модалки при скроле в конец экрана
   function showModalByScroll() {
@@ -202,7 +198,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // window.addEventListener('scroll', showModalByScroll);
+  window.addEventListener('scroll', showModalByScroll);
 
   // Timer
 
@@ -267,4 +263,95 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setClock('.timer', deadline);
+
+  // Forms (работа с сервером)
+
+  // обращаемся к тегу form
+  const forms = document.querySelectorAll('form');
+
+  //создаем объект сообщений о завершении операции
+
+  const message = {
+    loading: 'img/spinner.svg',
+    success: 'Спасибо, мы скоро с вами свяжемся',
+    fail: 'Что-то пошло не так',
+  };
+
+  // на каждую форму подвязываем ф-цию postData
+  forms.forEach((item) => {
+    postData(item);
+  });
+
+  // Отправка, обработка данных сервером и ответ в виде модалки
+  function postData(form) {
+    //1) добавление спинера
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const statusMessage = document.querySelector('img');
+      statusMessage.src = message.loading;
+      statusMessage.style.cssText = `
+              display: block;
+              margin: 0 auto;
+            `;
+      form.insertAdjacentElement('afterend', statusMessage);
+
+      //2) работа с сервером
+      const request = new XMLHttpRequest();
+      request.open('POST', 'server.php');
+
+      request.setRequestHeader(
+        'Content-type',
+        'application-json; charset=utf-8'
+      );
+      const formData = new FormData(form);
+
+      const obj = {};
+      formData.forEach((value, key) => {
+        obj[key] = value;
+      });
+      const json = JSON.stringify(obj);
+
+      request.send(json);
+
+      //3) Обработка и ответ на запрос
+      request.addEventListener('load', () => {
+        if (request.status == 200) {
+          console.log(request.response);
+          showThanksModal(message.success);
+          form.reset();
+          statusMessage.remove();
+        } else {
+          showThanksModal(message.fail);
+        }
+      });
+    });
+  }
+
+  // окно благодарности
+  function showThanksModal(message) {
+    const prevModalDialog = document.querySelector('.modal__dialog');
+
+    prevModalDialog.classList.add('hide');
+    openModal();
+
+    const thanksModal = document.createElement('div');
+    thanksModal.classList.add('modal__dialog');
+    thanksModal.innerHTML = `
+      <div class = "modal__content">
+        <div class = "modal__close" data-close>×</div>
+        <div class = "modal__title">${message}</div>        
+      </div>
+    `;
+
+    document.querySelector('.modal').append(thanksModal);
+    setTimeout(() => {
+      thanksModal.remove();
+      prevModalDialog.classList.add('show');
+      prevModalDialog.classList.remove('hide');
+      closeModal();
+    }, 4000);
+  }
 });
+
+// 2й спинер огромный!! испрвить!
