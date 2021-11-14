@@ -270,7 +270,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const forms = document.querySelectorAll('form');
 
   //создаем объект сообщений о завершении операции
-
   const message = {
     loading: 'img/spinner.svg',
     success: 'Спасибо, мы скоро с вами свяжемся',
@@ -291,7 +290,9 @@ window.addEventListener('DOMContentLoaded', () => {
       const statusMessage = document.querySelector('img');
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
-              display: block;
+      width: 5px; 
+      height: 5px;
+              display: flex;
               margin: 0 auto;
             `;
       form.insertAdjacentElement('afterend', statusMessage);
