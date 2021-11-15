@@ -264,6 +264,79 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setClock('.timer', deadline);
 
+  //Используем классы для карточек
+
+  class MenuCard {
+    constructor(
+      src,
+      alt,
+      title,
+      descr,
+      price,
+      parentSelector,
+      ...classes /*rest*/
+    ) {
+      this.src = src;
+      this.alt = alt;
+      this.title = title;
+      this.descr = descr;
+      this.price = price;
+      this.parentSelector = parentSelector;
+      this.classes = classes;
+      this.parent = document.querySelector(parentSelector); // родит класс, куда будет помещаться HTML
+      this.transfer = 2.46;
+      this.changeToUAH();
+    }
+
+    changeToUAH() {
+      this.price = this.price * this.transfer;
+    }
+    // ф-ция, где создаем эл-т div, далее внутрь его помещаем html с подставлением вышеобъявленных переменных
+    render() {
+      const element = document.createElement('div');
+      element.innerHTML = `
+        <img src=${this.src} alt=${this.alt} />
+        <h3 class="menu__item-subtitle">${this.title}</h3>
+        <div class="menu__item-descr">
+          ${this.descr}
+        </div>
+        <div class="menu__item-divider"></div>
+        <div class="menu__item-price">
+          <div class="menu__item-cost">Цена:</div>
+          <div class="menu__item-total"><span>${this.price}</span> руб</div>
+        </div>
+      `;
+      this.parent.append(element);
+    }
+  }
+
+  new MenuCard(
+    'img/menuFood01.jpg',
+    'Breakfast',
+    'Breakfast',
+    'Oatmeal with dried apricots (350.6 Kcal) + cranberry-coconut energy bar (434 Kcal / 100 g). Freeze-dried breakfast includes oatmeal, raisins, dried apricots and milk powder. This breakfast leaves you feeling full for several hours and energizes the whole day.',
+    4,
+    '.menu .container'
+  ).render();
+
+  new MenuCard(
+    'img/menuFood02.jpg',
+    'Lunch',
+    'Lunch',
+    'Pea soup with pork (315.2 Kcal) + naval noodles (330 Kcal) + Carpathian tea with snacks. For a few hours of the hike, the energy supply is wasted, so it must be replenished with a hearty, but not heavy lunch.',
+    8,
+    '.menu .container'
+  ).render();
+
+  new MenuCard(
+    'img/menuFood03.jpg',
+    'Dinner',
+    'Dinner',
+    'Buckwheat porridge with beef (331 Kcal) + dried fruits (297.7 Kcal) + Carpathian tea. Such a dinner will satisfy the feeling of hunger, but at the same time it will not overload the stomach, and the food will be quickly absorbed.',
+    6,
+    '.menu .container'
+  ).render();
+
   // Forms (работа с сервером)
 
   // обращаемся к тегу form
@@ -305,15 +378,16 @@ window.addEventListener('DOMContentLoaded', () => {
       });
 
       // работа с сервером
-      fetch('server.php', { // куда
+      fetch('server.php', {
+        // куда
         method: 'POST', // каким образом
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
         },
-        body: JSON.stringify(obj) // что именно
+        body: JSON.stringify(obj), // что именно
       }) // обработка запроса
-        .then(data => data.text()) // форматируем json в обычный текст
-        .then(data => {
+        .then((data) => data.text()) // форматируем json в обычный текст
+        .then((data) => {
           console.log(data);
           showThanksModal(message.success);
           statusMessage.remove();
