@@ -283,49 +283,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Отправка, обработка данных сервером и ответ в виде модалки
   function postData(form) {
-    //1) добавление спинера
+    // добавление спинера
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const statusMessage = document.querySelector('img');
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
-      width: 5px; 
-      height: 5px;
               display: flex;
               margin: 0 auto;
             `;
       form.insertAdjacentElement('afterend', statusMessage);
 
-      //2) работа с сервером
-      const request = new XMLHttpRequest();
-      request.open('POST', 'server.php');
-
-      request.setRequestHeader(
-        'Content-type',
-        'application-json; charset=utf-8'
-      );
+      // обработка данных пол-ля
       const formData = new FormData(form);
 
+      // формат данных в объект
       const obj = {};
       formData.forEach((value, key) => {
         obj[key] = value;
       });
-      const json = JSON.stringify(obj);
 
-      request.send(json);
-
-      //3) Обработка и ответ на запрос
-      request.addEventListener('load', () => {
-        if (request.status == 200) {
-          console.log(request.response);
+      // работа с сервером
+      fetch('server.php', { // куда
+        method: 'POST', // каким образом
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(obj) // что именно
+      }) // обработка запроса
+        .then(data => data.text()) // форматируем json в обычный текст
+        .then(data => {
+          console.log(data);
           showThanksModal(message.success);
-          form.reset();
           statusMessage.remove();
-        } else {
+        }) // обработка ошибок
+        .catch(() => {
           showThanksModal(message.fail);
-        }
-      });
+        }) // очищаем форму
+        .finally(() => {
+          form.reset();
+        });
     });
   }
 
