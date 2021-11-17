@@ -264,7 +264,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setClock('.timer', deadline);
 
-  //Используем классы для карточек
+  //Карточки (работа с сервером)
 
   class MenuCard {
     constructor(
@@ -285,15 +285,22 @@ window.addEventListener('DOMContentLoaded', () => {
       this.classes = classes;
       this.parent = document.querySelector(parentSelector); // родит класс, куда будет помещаться HTML
       this.transfer = 2.46;
-      this.changeToUAH();
+      this.changeToBYN();
     }
 
-    changeToUAH() {
+    changeToBYN() {
       this.price = this.price * this.transfer;
     }
     // ф-ция, где создаем эл-т div, далее внутрь его помещаем html с подставлением вышеобъявленных переменных
     render() {
       const element = document.createElement('div');
+
+      if (this.classes.length === 0) {
+        this.element = 'menu__item';
+        element.classList.add(this.element);
+      } else {
+        this.classes.forEach((className) => element.classList.add(className));
+      }
       element.innerHTML = `
         <img src=${this.src} alt=${this.alt} />
         <h3 class="menu__item-subtitle">${this.title}</h3>
@@ -310,32 +317,33 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  new MenuCard(
-    'img/menuFood01.jpg',
-    'Breakfast',
-    'Breakfast',
-    'Oatmeal with dried apricots (350.6 Kcal) + cranberry-coconut energy bar (434 Kcal / 100 g). Freeze-dried breakfast includes oatmeal, raisins, dried apricots and milk powder. This breakfast leaves you feeling full for several hours and energizes the whole day.',
-    4,
-    '.menu .container'
-  ).render();
+  // ф-ция отправки запроса на сервер, если результат не ОК, то
+  // выбрасывает ошибку, если ок, то возвращает в формате json
+  const getResource = async (url) => {
+    const res = await fetch(url);
 
-  new MenuCard(
-    'img/menuFood02.jpg',
-    'Lunch',
-    'Lunch',
-    'Pea soup with pork (315.2 Kcal) + naval noodles (330 Kcal) + Carpathian tea with snacks. For a few hours of the hike, the energy supply is wasted, so it must be replenished with a hearty, but not heavy lunch.',
-    8,
-    '.menu .container'
-  ).render();
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
 
-  new MenuCard(
-    'img/menuFood03.jpg',
-    'Dinner',
-    'Dinner',
-    'Buckwheat porridge with beef (331 Kcal) + dried fruits (297.7 Kcal) + Carpathian tea. Such a dinner will satisfy the feeling of hunger, but at the same time it will not overload the stomach, and the food will be quickly absorbed.',
-    6,
-    '.menu .container'
-  ).render();
+    return await res.json();
+  };
+
+  // делаем запрос на сервер, создаем объект с соответствующими
+  // каждому блоку параметрами и вызываем
+  // на нем метод render()
+  getResource('http://localhost:3000/menu').then((data) => {
+    data.forEach(({ img, altimg, title, descr, price }) => {
+      new MenuCard(
+        img,
+        altimg,
+        title,
+        descr,
+        price,
+        '.menu .container'
+      ).render();
+    });
+  });
 
   // Forms (работа с сервером)
 
@@ -349,21 +357,35 @@ window.addEventListener('DOMContentLoaded', () => {
     fail: 'Что-то пошло не так',
   };
 
-  // на каждую форму подвязываем ф-цию postData
+  // на каждую форму подвязываем ф-цию bindPostData
   forms.forEach((item) => {
-    postData(item);
+    bindPostData(item);
   });
 
+  // ф-ция отправки данных на сервер, получение ответа с сервера
+  // в виде promise, конвертация в json
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: 'POST', // каким образом
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: data, // что именно
+    });
+
+    return await res.json();
+  };
+
   // Отправка, обработка данных сервером и ответ в виде модалки
-  function postData(form) {
+  function bindPostData(form) {
     // добавление спинера
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const statusMessage = document.querySelector('img');
+      const statusMessage = document.createElement('img');
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
-              display: flex;
+              display: block;
               margin: 0 auto;
             `;
       form.insertAdjacentElement('afterend', statusMessage);
@@ -371,22 +393,11 @@ window.addEventListener('DOMContentLoaded', () => {
       // обработка данных пол-ля
       const formData = new FormData(form);
 
-      // формат данных в объект
-      const obj = {};
-      formData.forEach((value, key) => {
-        obj[key] = value;
-      });
+      // 1. Массив массивов 2. Объект 3. JSON
+      const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-      // работа с сервером
-      fetch('server.php', {
-        // куда
-        method: 'POST', // каким образом
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(obj), // что именно
-      }) // обработка запроса
-        .then((data) => data.text()) // форматируем json в обычный текст
+      // отправляем запрос с данными json на сервер
+      postData('http://localhost:3000/requests', json)
         .then((data) => {
           console.log(data);
           showThanksModal(message.success);

@@ -656,7 +656,7 @@ header {
 .menu__item {
   width: 320px;
   min-height: 450px;
-  background: #fff;
+  background-color: #8f7498;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
   font-size: 16px;
   font-weight: 300;
@@ -671,14 +671,18 @@ header {
   font-weight: 700;
   font-size: 25px;
   margin-top: 20px;
+  padding: 0 20px;
 }
 .menu__item-descr {
+  font-weight: 700;
   margin-top: 20px;
   width: 299px;
+  padding: 0 20px;
 }
 .menu__item-price {
   font-size: 22px;
   color: #fbd784;
   margin-top: 10px;
   background-color: #8f7498;
+  padding: 20px 20px;
 }

@@ -1,0 +1,32 @@
+{
+  "menu": [
+    {
+      "img": "img/menuFood01.jpg",
+      "altimg": "Breakfast",
+      "title": "Breakfast",
+      "descr": "Oatmeal with dried apricots (350.6 Kcal) + cranberry-coconut energy bar (434 Kcal / 100 g). Freeze-dried breakfast includes oatmeal, raisins, dried apricots and milk powder. This breakfast leaves you feeling full for several hours and energizes the whole day.",
+      "price": 4
+    },
+    {
+      "img": "img/menuFood02.jpg",
+      "altimg": "Lunch",
+      "title": "Lunch",
+      "descr": "Pea soup with pork (315.2 Kcal) + naval noodles (330 Kcal) + Carpathian tea with snacks. For a few hours of the hike, the energy supply is wasted, so it must be replenished with a hearty, but not heavy lunch.",
+      "price": 8
+    },
+    {
+      "img": "img/menuFood03.jpg",
+      "altimg": "Dinner",
+      "title": "Dinner",
+      "descr": "Buckwheat porridge with beef (331 Kcal) + dried fruits (297.7 Kcal) + Carpathian tea. Such a dinner will satisfy the feeling of hunger, but at the same time it will not overload the stomach, and the food will be quickly absorbed.",
+      "price": 6
+    }
+  ],
+  "requests": [
+    {
+      "name": "3334976@gmail.com",
+      "phone": "545",
+      "id": 1
+    }
+  ]
+}
