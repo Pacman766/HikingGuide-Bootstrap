@@ -56,55 +56,104 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Слайдер
+  //  Slider
 
-  let offsetSlider = 0; //смещение от левого края
-  let offsetText = 0; // смещение текста
-  const sliderLine = document.querySelector('.slider-line');
+  const slides = document.querySelectorAll('.slider-line img'),
+    prev = document.querySelector('.slider-prev'),
+    next = document.querySelector('.slider-next'),
+    firstButton = document.querySelector('.page-link-01'),
+    secondButton = document.querySelector('.page-link-02'),
+    thirdButton = document.querySelector('.page-link-03');
+  let slideIndex = 1;
 
-  document.querySelector('.slider-next').addEventListener('click', function () {
-    offsetSlider += 360;
-    if (offsetSlider > 1080) {
-      offsetSlider = 0;
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+    if (n > slides.length) {
+      slideIndex = 1;
     }
-    sliderLine.style.left = -offsetSlider + 'px';
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+
+    slides.forEach((item) => (item.style.display = 'none'));
+    slides[slideIndex - 1].style.display = 'block';
+  }
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function showSlidesByNumber (n) {
+    slides.forEach((item) => (item.style.display = 'none'));
+    slides[n].style.display = 'block';
+  }
+
+  prev.addEventListener('click', () => {
+    plusSlides(-1);
+  });
+  next.addEventListener('click', () => {
+    plusSlides(1);
+  });
+  firstButton.addEventListener('click', () => {
+    showSlidesByNumber(0);
+  });
+  secondButton.addEventListener('click', () => {
+    showSlidesByNumber(1);
+  });
+  thirdButton.addEventListener('click', () => {
+    showSlidesByNumber(2);
   });
 
-  document.querySelector('.slider-prev').addEventListener('click', function () {
-    offsetSlider -= 360;
-    if (offsetSlider < 0) {
-      offsetSlider = 1080;
-    }
-    sliderLine.style.left = -offsetSlider + 'px';
-  });
+  // Альтернативный слайдер
 
-  document
-    .querySelector('.page-link-01')
-    .addEventListener('click', function () {
-      if (offsetSlider == 360 || offsetSlider == 720 || offsetSlider == 1080) {
-        offsetSlider = 0;
-      }
-      sliderLine.style.left = -offsetSlider + 'px';
-    });
+  // let offsetSlider = 0; //смещение от левого края
+  // let offsetText = 0; // смещение текста
+  // const sliderLine = document.querySelector('.slider-line');
 
-  document
-    .querySelector('.page-link-02')
-    .addEventListener('click', function () {
-      if (offsetSlider == 0 || offsetSlider == 720 || offsetSlider == 1080) {
-        offsetSlider = 360;
-      }
-      sliderLine.style.left = -offsetSlider + 'px';
-    });
+  // document.querySelector('.slider-next').addEventListener('click', function () {
+  //   offsetSlider += 360;
+  //   if (offsetSlider > 1080) {
+  //     offsetSlider = 0;
+  //   }
+  //   sliderLine.style.left = -offsetSlider + 'px';
+  // });
 
-  document
-    .querySelector('.page-link-03')
-    .addEventListener('click', function () {
-      if (offsetSlider == 0 || offsetSlider == 360 || offsetSlider == 1080) {
-        offsetSlider = 720;
-      }
+  // document.querySelector('.slider-prev').addEventListener('click', function () {
+  //   offsetSlider -= 360;
+  //   if (offsetSlider < 0) {
+  //     offsetSlider = 1080;
+  //   }
+  //   sliderLine.style.left = -offsetSlider + 'px';
+  // });
 
-      sliderLine.style.left = -offsetSlider + 'px';
-    });
+  // document
+  //   .querySelector('.page-link-01')
+  //   .addEventListener('click', function () {
+  //     if (offsetSlider == 360 || offsetSlider == 720 || offsetSlider == 1080) {
+  //       offsetSlider = 0;
+  //     }
+  //     sliderLine.style.left = -offsetSlider + 'px';
+  //   });
+
+  // document
+  //   .querySelector('.page-link-02')
+  //   .addEventListener('click', function () {
+  //     if (offsetSlider == 0 || offsetSlider == 720 || offsetSlider == 1080) {
+  //       offsetSlider = 360;
+  //     }
+  //     sliderLine.style.left = -offsetSlider + 'px';
+  //   });
+
+  // document
+  //   .querySelector('.page-link-03')
+  //   .addEventListener('click', function () {
+  //     if (offsetSlider == 0 || offsetSlider == 360 || offsetSlider == 1080) {
+  //       offsetSlider = 720;
+  //     }
+
+  //     sliderLine.style.left = -offsetSlider + 'px';
+  //   });
 
   // Табы
 

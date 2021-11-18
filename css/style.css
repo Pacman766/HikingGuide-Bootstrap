@@ -284,6 +284,8 @@ header {
   font-size: 24px;
 }
 
+/* Scroll up */
+
 .scroll-up {
   position: fixed;
   right: 50px;
@@ -332,12 +334,13 @@ header {
   transition: 0.2s;
 }
 
+/* Slider */
+
 .slider {
   width: 360px;
   height: 640px;
   margin: 30px auto;
   padding: 0;
-  overflow: hidden;
 }
 
 .slider-line {
@@ -355,6 +358,20 @@ header {
   text-transform: uppercase;
   font-size: 18px;
   letter-spacing: 3px;
+}
+
+.page-link {
+  color: #ffc02e;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.page-link:hover {
+  color: #ffc02e;
+}
+
+.page-link span{
+  color: #ffc02e;
 }
 
 /* Tabs */
