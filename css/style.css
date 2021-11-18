@@ -351,6 +351,7 @@ header {
   left: 0;
   transition: all ease 1s;
   font-size: 0;
+  /* overflow: hidden; */
 }
 
 .text-clothes {

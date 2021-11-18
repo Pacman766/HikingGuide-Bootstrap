@@ -58,6 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   //  Slider
 
+  // путь к элементам слайдера
   const slides = document.querySelectorAll('.slider-line img'),
     prev = document.querySelector('.slider-prev'),
     next = document.querySelector('.slider-next'),
@@ -69,22 +70,25 @@ window.addEventListener('DOMContentLoaded', () => {
   showSlides(slideIndex);
 
   function showSlides(n) {
+    // возврат слайдера с крайних позиций
     if (n > slides.length) {
       slideIndex = 1;
     }
     if (n < 1) {
       slideIndex = slides.length;
     }
-
+    // скрыть все картинки и отобразить только 1ю
     slides.forEach((item) => (item.style.display = 'none'));
     slides[slideIndex - 1].style.display = 'block';
   }
 
+  // отбражение слайдера при помощи next, prev
   function plusSlides(n) {
-    showSlides(slideIndex += n);
+    showSlides((slideIndex += n));
   }
 
-  function showSlidesByNumber (n) {
+  // отображение слайдеров по нажатию на цифры
+  function showSlidesByNumber(n) {
     slides.forEach((item) => (item.style.display = 'none'));
     slides[n].style.display = 'block';
   }
@@ -105,7 +109,7 @@ window.addEventListener('DOMContentLoaded', () => {
     showSlidesByNumber(2);
   });
 
-  // Альтернативный слайдер
+  // Альтернативный слайдер (в виде карусели)
 
   // let offsetSlider = 0; //смещение от левого края
   // let offsetText = 0; // смещение текста
