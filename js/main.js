@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  //  Slider
+  //  Slider (в виде карусели)
 
   // путь к элементам слайдера
   const slides = document.querySelectorAll('.slider-line img'),
@@ -64,52 +64,124 @@ window.addEventListener('DOMContentLoaded', () => {
     next = document.querySelector('.slider-next'),
     firstButton = document.querySelector('.page-link-01'),
     secondButton = document.querySelector('.page-link-02'),
-    thirdButton = document.querySelector('.page-link-03');
+    thirdButton = document.querySelector('.page-link-03'),
+    slideWrapper = document.querySelector('.slider'),
+    slideField = document.querySelector('.slider-line'),
+    width = window.getComputedStyle(slideWrapper).width; //ширина одного слайда
   let slideIndex = 1;
+  let offsetSlider = 0;
 
-  showSlides(slideIndex);
+  // задаем инлайн стили
+  slideField.style.width = 100 * slides.length + '%'; // длина всех слайдов
+  slideField.style.display = 'flex';
+  slideField.style.transition = '0.5s all';
 
-  function showSlides(n) {
-    // возврат слайдера с крайних позиций
-    if (n > slides.length) {
-      slideIndex = 1;
+  slideWrapper.style.overflow = 'hidden';
+
+  // устанавливаем длину каждого слайда
+  slides.forEach((slide) => {
+    slide.style.width = width;
+  });
+
+  next.addEventListener('click', () => {
+    // если находимся на последнем слайде, то смещаемся при клике на 1й
+    // в противном случае просто смещаемся на 1 слайд вперед
+    if (
+      offsetSlider ==
+      +width.slice(0, width.length - 2) * (slides.length - 1)
+    ) {
+      offsetSlider = 0;
+    } else {
+      offsetSlider += +width.slice(0, width.length - 2);
     }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-    // скрыть все картинки и отобразить только 1ю
-    slides.forEach((item) => (item.style.display = 'none'));
-    slides[slideIndex - 1].style.display = 'block';
-  }
 
-  // отбражение слайдера при помощи next, prev
-  function plusSlides(n) {
-    showSlides((slideIndex += n));
-  }
-
-  // отображение слайдеров по нажатию на цифры
-  function showSlidesByNumber(n) {
-    slides.forEach((item) => (item.style.display = 'none'));
-    slides[n].style.display = 'block';
-  }
+    slideField.style.transform = `translateX(-${offsetSlider}px)`;
+  });
 
   prev.addEventListener('click', () => {
-    plusSlides(-1);
-  });
-  next.addEventListener('click', () => {
-    plusSlides(1);
-  });
-  firstButton.addEventListener('click', () => {
-    showSlidesByNumber(0);
-  });
-  secondButton.addEventListener('click', () => {
-    showSlidesByNumber(1);
-  });
-  thirdButton.addEventListener('click', () => {
-    showSlidesByNumber(2);
+    // если находимся на 1м слайде, то смещаемся при клике на последний
+    // в противном случае просто смещаемся на 1 слайд назад
+    if (offsetSlider == 0) {
+      offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 1);
+    } else {
+      offsetSlider -= +width.slice(0, width.length - 2);
+    }
+
+    slideField.style.transform = `translateX(-${offsetSlider}px)`;
   });
 
-  // Альтернативный слайдер (в виде карусели)
+  firstButton.addEventListener('click', () => {
+    //
+    offsetSlider = 0;
+    slideField.style.transform = `translateX(-${offsetSlider}px)`;
+  });
+
+  secondButton.addEventListener('click', () => {
+    //
+    offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 3);
+    slideField.style.transform = `translateX(-${offsetSlider}px)`;
+  });
+
+  thirdButton.addEventListener('click', () => {
+    //
+    offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 2);
+    slideField.style.transform = `translateX(-${offsetSlider}px)`;
+  });
+
+  //  Slider (базовый)
+
+  // // путь к элементам слайдера
+  // const slides = document.querySelectorAll('.slider-line img'),
+  //   prev = document.querySelector('.slider-prev'),
+  //   next = document.querySelector('.slider-next'),
+  //   firstButton = document.querySelector('.page-link-01'),
+  //   secondButton = document.querySelector('.page-link-02'),
+  //   thirdButton = document.querySelector('.page-link-03');
+  // let slideIndex = 1;
+
+  // showSlides(slideIndex);
+
+  // function showSlides(n) {
+  //   // возврат слайдера с крайних позиций
+  //   if (n > slides.length) {
+  //     slideIndex = 1;
+  //   }
+  //   if (n < 1) {
+  //     slideIndex = slides.length;
+  //   }
+  //   // скрыть все картинки и отобразить только 1ю
+  //   slides.forEach((item) => (item.style.display = 'none'));
+  //   slides[slideIndex - 1].style.display = 'block';
+  // }
+
+  // // отбражение слайдера при помощи next, prev
+  // function plusSlides(n) {
+  //   showSlides((slideIndex += n));
+  // }
+
+  // // отображение слайдеров по нажатию на цифры
+  // function showSlidesByNumber(n) {
+  //   slides.forEach((item) => (item.style.display = 'none'));
+  //   slides[n].style.display = 'block';
+  // }
+
+  // prev.addEventListener('click', () => {
+  //   plusSlides(-1);
+  // });
+  // next.addEventListener('click', () => {
+  //   plusSlides(1);
+  // });
+  // firstButton.addEventListener('click', () => {
+  //   showSlidesByNumber(0);
+  // });
+  // secondButton.addEventListener('click', () => {
+  //   showSlidesByNumber(1);
+  // });
+  // thirdButton.addEventListener('click', () => {
+  //   showSlidesByNumber(2);
+  // });
+
+  // Альтернативный слайдер (в виде карусели, внесение размеров напрямую)
 
   // let offsetSlider = 0; //смещение от левого края
   // let offsetText = 0; // смещение текста
