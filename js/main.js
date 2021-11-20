@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // путь к элементам слайдера
   const slides = document.querySelectorAll('.slider-line img'),
+    slider = document.querySelector('.slider__main'),
     prev = document.querySelector('.slider-prev'),
     next = document.querySelector('.slider-next'),
     firstButton = document.querySelector('.page-link-01'),
@@ -68,6 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
     slideWrapper = document.querySelector('.slider'),
     slideField = document.querySelector('.slider-line'),
     width = window.getComputedStyle(slideWrapper).width; //ширина одного слайда
+  
   let slideIndex = 1;
   let offsetSlider = 0;
 
@@ -75,13 +77,34 @@ window.addEventListener('DOMContentLoaded', () => {
   slideField.style.width = 100 * slides.length + '%'; // длина всех слайдов
   slideField.style.display = 'flex';
   slideField.style.transition = '0.5s all';
-
   slideWrapper.style.overflow = 'hidden';
 
   // устанавливаем длину каждого слайда
   slides.forEach((slide) => {
     slide.style.width = width;
   });
+
+  slider.style.position = 'relative';
+
+  const indicators = document.createElement('ol'),
+        dots = [];
+  indicators.classList.add('carousel-indicators');
+
+  indicators.style.cssText = `
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+  `;
+  slider.append(indicators);
+
+  
 
   next.addEventListener('click', () => {
     // если находимся на последнем слайде, то смещаемся при клике на 1й
