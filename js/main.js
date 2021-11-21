@@ -104,7 +104,11 @@ window.addEventListener('DOMContentLoaded', () => {
   `;
   slider.append(indicators);
 
-  
+  for(let i = 0; i < slides.length; i++) {
+    const dot = document.createElement('li');
+    
+  }
+    
 
   next.addEventListener('click', () => {
     // если находимся на последнем слайде, то смещаемся при клике на 1й
