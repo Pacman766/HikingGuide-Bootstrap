@@ -106,9 +106,37 @@ window.addEventListener('DOMContentLoaded', () => {
 
   for(let i = 0; i < slides.length; i++) {
     const dot = document.createElement('li');
-    
+    dot.setAttribute('data-slide-to', i + 1);
+    dot.style.cssText = `
+      box-sizing: content-box;
+      flex: 0 1 auto;
+      width: 30px;
+      height: 6px;
+      margin-right: 3px;
+      margin-left: 3px;
+      cursor: pointer;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      opacity: .5;
+      transition: opacity .6s ease;
+    `;
+    if(i == 0) {
+      dot.style.opacity = 1;
+    }
+    indicators.append(dot);
+    dots.push(dot);
   }
-    
+    next.addEventListener('click', () => {
+      if(offsetSlider == +width.slice(0, width.length - 2) * (slides.length -1 )) {
+        offsetSlider = 0;
+      } else {
+        offsetSlider += +width.slice(0, width.length - 2);
+      }
+      
+    });
+
 
   next.addEventListener('click', () => {
     // если находимся на последнем слайде, то смещаемся при клике на 1й
