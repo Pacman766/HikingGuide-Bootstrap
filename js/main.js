@@ -129,39 +129,62 @@ window.addEventListener('DOMContentLoaded', () => {
     dots.push(dot);
   }
 
+  function onlyDigits (str) {
+    return +str.replace(/\D/g, '');
+  }
+
+  // сначала всему массиву устанавливаем прозрачность 0.5
+  // потом по очереди каждому dot уст. прозрачность 1
+  function dotsOpacity () {
+    dots.forEach((dots) => (dots.style.opacity = '0.5'));
+    dots[slideIndex - 1].style.opacity = 1;
+  }
+
   next.addEventListener('click', (e) => {
     // если находимся на последнем слайде, то смещаемся при клике на 1й
     // в противном случае просто смещаемся на 1 слайд вперед
     if (
       offsetSlider ==
-      +width.slice(0, width.length - 2) * (slides.length - 1)
+      onlyDigits(width) * (slides.length - 1)
     ) {
       offsetSlider = 0;
     } else {
-      offsetSlider += +width.slice(0, width.length - 2);
+      offsetSlider += onlyDigits(width);
     }
 
     slideField.style.transform = `translateX(-${offsetSlider}px)`;
 
-    // сначала всему массиву устанавливаем прозрачность 0.5
-    // потом по очереди каждому dot уст. прозрачность 1
-    dots.forEach((dots) => (dots.style.opacity = '0.5'));
-    dots[slideIndex - 1].style.opacity = 1;
+    // если мы долистали слайды до конца, то переключаемся на 1й
+    // в противном случае листаем вперед
+    if (slideIndex == slides.length) {
+      slideIndex = 1;
+    } else {
+      slideIndex++;
+    }
+
+    dotsOpacity();
   });
 
   prev.addEventListener('click', () => {
     // если находимся на 1м слайде, то смещаемся при клике на последний
     // в противном случае просто смещаемся на 1 слайд назад
     if (offsetSlider == 0) {
-      offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 1);
+      offsetSlider = onlyDigits(width) * (slides.length - 1);
     } else {
-      offsetSlider -= +width.slice(0, width.length - 2);
+      offsetSlider -= onlyDigits(width);
     }
 
     slideField.style.transform = `translateX(-${offsetSlider}px)`;
 
-    dots.forEach((dots) => (dots.style.opacity = '0.5'));
-    dots[slideIndex - 1].style.opacity = 1;
+    // с 1го слайда перелистаем на 4й
+    // в противном случае просто листаем назад
+    if (slideIndex == 1) {
+      slideIndex = slides.length;
+    } else {
+      slideIndex--;
+    }
+
+    dotsOpacity();
   });
 
   firstButton.addEventListener('click', () => {
@@ -172,13 +195,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   secondButton.addEventListener('click', () => {
     //
-    offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 3);
+    offsetSlider = onlyDigits(width) * (slides.length - 3);
     slideField.style.transform = `translateX(-${offsetSlider}px)`;
   });
 
   thirdButton.addEventListener('click', () => {
     //
-    offsetSlider = +width.slice(0, width.length - 2) * (slides.length - 2);
+    offsetSlider = onlyDigits(width) * (slides.length - 2);
     slideField.style.transform = `translateX(-${offsetSlider}px)`;
   });
 
@@ -193,11 +216,10 @@ window.addEventListener('DOMContentLoaded', () => {
       slideIndex = slideTo;
 
       // смещение точек и слайдов соответственно
-      offsetSlider = +width.slice(0, width.length - 2) * (slideTo - 1);
+      offsetSlider = onlyDigits(width) * (slideTo - 1);
       slideField.style.transform = `translateX(-${offsetSlider}px)`;
 
-      dots.forEach((dots) => (dots.style.opacity = '0.5'));
-      dots[slideIndex - 1].style.opacity = 1;
+      dotsOpacity();
     });
   });
 
